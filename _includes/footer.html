@@ -1,0 +1,16 @@
+<footer class="footer container">
+    {% for author in site.data.author %} 
+    <small>{{ author.name }}</small>
+    <ul class="social-media">
+        <li class="social-media__link social-media__link--facebook">
+            <a href="{{ author.social.facebook }}" target="_blank" title="Facebook">Facebook</a>
+        </li>
+        <li class="social-media__link social-media__link--twitter">
+            <a href="{{ author.social.twitter }}" target="_blank" title="Twitter">Twitter</a>
+        </li>
+        <li class="social-media__link social-media__link--instagram">
+            <a href="{{ author.social.instagram }}" target="_blank" title="Instagram">Instagram</a>
+        </li>
+    </ul>
+    {% endfor %}
+</footer>

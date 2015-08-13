@@ -1,0 +1,34 @@
+.footer
+    @extend %clearfix
+    height: 50px
+    clear: both
+    text-align: center
+    background-color: #111111
+    padding: 0 20px
+    small
+        float: left
+        font-size: 20px
+        color: white
+        line-height: 50px
+
+
+.social-media
+    float: right
+    padding-left: 0
+    margin: -7px 0 0
+    &__link
+        display: inline-block
+        a
+            @extend %removing-text-anchor
+            background-image: $sprite
+            width: 32px
+            height: 32px
+            display: block
+            transition: opacity 0.5s ease-in
+        a:hover
+            opacity: 0.5
+            
+@each $i in $social-media
+    .social-media__link--#{$i} a
+        +sprite($sprite, $i, false)
+        margin-left: 5px

@@ -1,0 +1,19 @@
+---
+layout: home
+---
+<section class="home-posts">
+    <h2 class="home-posts__title">My lastest posts</h2>
+    <ul class="home-posts__list">
+        {% for post in site.posts %}
+            <li class="home-posts__single">
+                <img src="{{ post.homeImage }}">
+                <div class="home-posts__text">
+                    <h3>{{ post.title }}</h3>
+                    <span>{{ post.date | date: '%Y/%m/%d' }}</span>
+                    <p>{{ post.summary }}</p>
+                    <a href="{{ post.url }}" class="read-more-button">Read more</a>
+                </div>
+            </li>
+        {% endfor %}
+   </ul>
+</section>

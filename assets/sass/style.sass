@@ -1,0 +1,54 @@
+@charset "UTF-8"
+
+@import "compass"
+@import "variables"
+
+*,
+*:before,
+*:after 
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+
+body
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif
+
+h3
+    margin: 0
+
+.container
+    width: 100%
+    margin: 0 auto
+
+    @media  #{$small-up}
+        max-width: 1000px
+
+%clearfix
+    &:before,
+    &:after
+        content: " " /* 1 */
+        display: table /* 2 */
+    &:after
+        clear: both
+
+%button-hover
+    color: black
+    background-color: #cecece
+
+%removing-text-anchor
+    line-height: 0 
+    font-size: 0
+    color: transparent
+
+=text-format($padding, $border: 1px solid #dedede)
+    padding-bottom: $padding
+    border-bottom: $border
+
+@import "header"
+@import "body"
+@import "sidebar"
+@import "footer"
+@import "about"
+@import "posts"
+
+

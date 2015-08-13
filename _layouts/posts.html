@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% for author in site.data.author %}
+    <title>{{ author.name }} - {{ page.title }}</title>
+    {% endfor %}
+    
+    {% include head.html%}
+    <meta name="description" content="{{ page.summary }}"/>
+</head>
+<body>
+
+    {% include header.html %}
+
+    <main class="container">
+        <section class="{{ page.type }}">
+            <article class="{{ page.type }}__text">
+                {{ content }}
+            </article>
+        </section>
+    </main>
+
+    {% include comments.html %}
+
+    {% include footer.html %}
+    <script src="/assets/js/scripts.js"></script>
+
+
+</body>
+</html>
