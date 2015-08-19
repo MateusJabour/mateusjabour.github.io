@@ -12,13 +12,16 @@
 .main-title
     float: left
     color: white
-    margin: 3px 0 0 20px
+    margin: 5px 0 0 20px
     font-family: 'Press Start 2P', Helvetica, Arial, sans-serif
-    font-size: 20px
+    font-size: 16px
+    
+    @media #{$smaller-up}
+        font-size: 19px
+        margin: 3px 0 0 20px
     
     @media #{$small-up}
         font-size: 37px
-        text-align: left
 
 .main-hamburger-menu
     @extend %removing-text-anchor
