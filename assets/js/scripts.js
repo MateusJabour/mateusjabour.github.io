@@ -6,12 +6,12 @@
 
         for (var i = $menuTriggers.length - 1; i >= 0; i--) {
             $menuTriggers[i].addEventListener('click', function (event) {
-                var activeIndex = $menu.className.indexOf('main-menu--active');
+                var activeIndex = $menu.className.indexOf('main-header__menu--active');
 
                 if (activeIndex !== -1){
                     $menu.className = $menu.className.substring(0, activeIndex);
                 } else {
-                    $menu.className += ' main-menu--active';
+                    $menu.className += ' main-header__menu--active';
                 }
             }, true)
         };

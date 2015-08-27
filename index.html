@@ -5,9 +5,9 @@ layout: home
     <h2 class="home-posts__title">My lastest posts</h2>
     <ul class="home-posts__list">
         {% for post in site.posts %}
-            <li class="home-posts__single">
+            <li class="home-posts__list-item">
                 <img src="{{ post.homeImage }}">
-                <div class="home-posts__text">
+                <div class="home-posts__list-item-text">
                     <h3>{{ post.title }}</h3>
                     <span>{{ post.date | date: '%Y/%m/%d' }}</span>
                     <p>{{ post.summary }}</p>
