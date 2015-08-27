@@ -1,0 +1,17 @@
+.footer
+    @extend %clearfix
+    height: 50px
+    clear: both
+    text-align: center
+    background-color: #111111
+    padding: 0 20px
+    
+    small
+        display: none
+        
+        @media #{$mobile-breakpoint}
+            display: block
+            float: left
+            font-size: 20px
+            color: white
+            line-height: 50px

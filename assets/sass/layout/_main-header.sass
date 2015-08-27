@@ -1,0 +1,24 @@
+.main-header
+    @extend %clearfix
+    height: 60px
+    background-color: #000
+    padding-top: 16px
+    position: relative
+    
+    @media #{$tablet-breakpoint}
+        padding-top: 36px
+        height: 160px
+
+    &__title
+        float: left
+        color: white
+        margin: 5px 0 0 20px
+        font-family: 'Press Start 2P', Helvetica, Arial, sans-serif
+        font-size: 16px
+
+        @media #{$mobile-breakpoint}
+            font-size: 19px
+            margin: 3px 0 0 20px
+        
+        @media #{$tablet-breakpoint}
+            font-size: 37px
