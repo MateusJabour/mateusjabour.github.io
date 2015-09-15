@@ -376,5 +376,5 @@ And Sass allows you to use one "@media" for two selectors:
 </code>
 
 {% for author in site.data.author%}
-So, we finished part 1 of this post, the part 2 will talk about the .sass files, the syntax and the utilities it has. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any dought with the tutorial, contact me. See you in the next post. :D
+So, we finished part 1 of this post, the part 2 will talk about the .sass files, the syntax and the utilities it has. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any doubts with the tutorial, contact me. See you in the next post. :D
 {% endfor %}

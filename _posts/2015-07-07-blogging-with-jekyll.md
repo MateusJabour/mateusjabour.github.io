@@ -108,5 +108,5 @@ Those are my social information, but now you are going to ask me, "how I use thi
 These is basically the footer of this website, simply using a data file, and you can use this file wherever you want. The page of <a href="http://jekyllrb.com/docs/datafiles/" target="_blank">data files</a> on the documentation show other way of using data.
 
 {% for author in site.data.author%}
-So basically you can create you're own website with Jekyll, and blog with it. If you have any dought about this tutorial, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, and take a look at the full <a href="http://jekyllrb.com/docs/home/">Documentation</a>.
+So basically you can create you're own website with Jekyll, and blog with it. If you have any doubts about this tutorial, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, and take a look at the full <a href="http://jekyllrb.com/docs/home/">Documentation</a>.
 {% endfor %}

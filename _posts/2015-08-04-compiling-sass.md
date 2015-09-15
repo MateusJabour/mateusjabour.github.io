@@ -73,5 +73,5 @@ compass watch
 You will compile the Sass file into the CSS file, and every change on Sass file will be compiled. Remember that you need to be on the directory of the "config.rb"(that should be on your project directory) to use this command.
 
 {% for author in site.data.author%}
-So, these are the two ways to compile Sass into CSS. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any dought with the compiling, contact me :)
+So, these are the two ways to compile Sass into CSS. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any doubts with the compiling, contact me :)
 {% endfor %}

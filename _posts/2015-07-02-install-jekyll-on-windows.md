@@ -36,5 +36,5 @@ Jekyll offers you a way to transform your static website into a dynamic one, sin
 
 {% for author in site.data.author %}
 I created a directory with the Jekyll using "new", then I used "cd" to go to this directory, and when I was inside, I used "serve" to create a local server.
-And now, you can finally start your website and use a local server for tests. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any dought with the installation, contact me :)  
+And now, you can finally start your website and use a local server for tests. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any doubts with the installation, contact me :)  
 {% endfor %}

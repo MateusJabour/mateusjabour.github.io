@@ -56,5 +56,5 @@ And other thing that .sass allows is to put a class with a placeholder:
 </code>
 
 {% for author in site.data.author%}
-So this is it, this part 2 is very simple, just to give you the difference between the two types of files. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any dought with the tutorial, contact me.
+So this is it, this part 2 is very simple, just to give you the difference between the two types of files. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any doubts with the tutorial, contact me.
 {% endfor %}

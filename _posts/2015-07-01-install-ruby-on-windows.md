@@ -24,5 +24,5 @@ ruby dk.rb install
 ```
 
 {% for author in site.data.author%}
-And now, you can finally start to programe in Ruby. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any dought with the installation, contact me :)
+And now, you can finally start to programe in Ruby. You can find me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> and <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, if you have any doubts with the installation, contact me :)
 {% endfor %}
