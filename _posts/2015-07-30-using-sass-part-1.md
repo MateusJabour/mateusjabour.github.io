@@ -2,7 +2,7 @@
 layout: posts
 title: "Using Sass - PART 1"
 summary: "Sass is the most mature, stable, and powerful professional grade CSS extension language in the world. This post will teach how to use it in your project, let's get start?"
-homeImage: "/assets/img/sass-part1-icon.jpg"
+homeImage: "/assets/img/using-sass-part-1.png"
 type: post
 permalink: using-sass-part-1
 ---

@@ -2,12 +2,14 @@
 layout: posts
 title: "Blogging with Jekyll"
 summary: "Using HTML, CSS, Jekyll and Markdown you are going to create your own website, but not a totally static website, with the help of Jekyll this is possible, because Jekyll is a blog-aware, static site generator."
-homeImage: /assets/img/how-to-blog-jekyll-icon.jpg
+homeImage: /assets/img/blogging-with-jekyll.png
 type: post
 permalink: blogging-with-jekyll
 ---
 
 <h2 class="post__text-title">{{ page.title }}</h2>
+
+![Jekyll and Html Logo]({{ page.homeImage }})
 
 Before we start, I will make clear the prerequisites to continue this post. First, you need to have a static site in HTML and CSS, then, you need to install 
 Ruby and Jekyll in your environment, I have already posted about how to install the two things, so if you haven't done that yet, click on the following links: 

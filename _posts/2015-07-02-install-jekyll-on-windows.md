@@ -2,7 +2,7 @@
 layout: posts
 title: "Installing Jekyll in your Windows environment"
 summary: "Jekyll is a RubyGem that offers you a way of transforming your HTML/CSS into a static website. This post is about how to install and use Jekyll, let's move on."
-homeImage: "/assets/img/jekyll-icon.jpg"
+homeImage: "/assets/img/installing-jekyll-on-windows.png"
 type: post
 permalink: installing-jekyll-on-windows
 ---

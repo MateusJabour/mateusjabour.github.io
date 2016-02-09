@@ -1,19 +1,35 @@
 (function (win, doc) {
     'use strict';
 
-    var $menuTriggers = doc.querySelectorAll('[data-js-menu-trigger]'),
-        $menu = doc.querySelector('#main-menu');
+    function app () {
+        var $openMenuButton = doc.querySelector('[data-js="open-menu-button"]');
+        var $closeMenuButton  = doc.querySelector('[data-js="close-menu-button"]');
+        var $menu = doc.querySelector('[data-js="main-menu"]');
 
-        for (var i = $menuTriggers.length - 1; i >= 0; i--) {
-            $menuTriggers[i].addEventListener('click', function (event) {
-                var activeIndex = $menu.className.indexOf('main-header__menu--active');
+        return {
 
-                if (activeIndex !== -1){
-                    $menu.className = $menu.className.substring(0, activeIndex);
-                } else {
-                    $menu.className += ' main-header__menu--active';
-                }
-            }, true)
-        };
+        init: function init () {
+            this.initEvents();
+        },
+
+        initEvents: function initEvents () {
+            $openMenuButton.addEventListener('click', this.openMenu);
+            $closeMenuButton.addEventListener('click', this.closeMenu);
+        },
+
+        openMenu: function openMenu (event) {
+            event.preventDefault();
+            $menu.className += ' main-header__menu--active';
+        },
+
+        closeMenu: function closeMenu (event) {
+            event.preventDefault();
+            var index = $menu.className.indexOf(' main-header__menu--active');
+            $menu.className = $menu.className.slice(0, index);
+        }
+
+        }
+    }
+    app().init();
 
 })(window, document); 

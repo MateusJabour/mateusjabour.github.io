@@ -2,7 +2,7 @@
 layout: posts
 title: "Compiling Sass"
 summary: "Sass is the most mature, stable, and powerful professional grade CSS extension language in the world. This post will teach you how to compile your Sass project on a css file"
-homeImage: "/assets/img/sass-icon.png"
+homeImage: "/assets/img/compiling-sass.png"
 type: post
 permalink: compiling-sass
 ---

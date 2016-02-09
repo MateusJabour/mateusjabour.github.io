@@ -2,7 +2,7 @@
 layout: posts
 title: "Learning SQL"
 summary: "SQL is a standard language for accessing databases, on this post you are going to understand more about the language and learn how to programe on it."
-homeImage: "/assets/img/sql-icon.png"
+homeImage: "/assets/img/learning-sql.png"
 type: post
 permalink: learning-sql
 ---

@@ -9,13 +9,15 @@ type: home
     <h2 class="home-posts__title">My lastest posts</h2>
     <ul class="home-posts__list">
         {% for post in site.posts %}
-            <li class="home-posts__list-item">
-                <img src="{{ post.homeImage }}">
-                <div class="home-posts__list-item-text">
-                    <h3>{{ post.title }}</h3>
-                    <span>{{ post.date | date: '%Y/%m/%d' }}</span>
-                    <p>{{ post.summary }}</p>
-                    <a href="{{ post.url }}" class="read-more-button">Read more</a>
+            <li class="home-posts__list-item home-posts__list-item--{{ post.permalink}}" data-js="post-list-item">
+                <div class="home-posts__list-item-shade">
+                    <img src="{{ post.homeImage }}">
+                    <div class="home-posts__list-item-text">
+                        <h3>{{ post.title }}</h3>
+                        <span>{{ post.date | date: '%Y/%m/%d' }}</span>
+                        <p>{{ post.summary }}</p>
+                        <a href="{{ post.url }}" class="read-more-button">Read more</a>
+                    </div>
                 </div>
             </li>
         {% endfor %}

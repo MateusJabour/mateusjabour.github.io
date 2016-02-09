@@ -2,7 +2,7 @@
 layout: posts
 title: "Installing Ruby in your Windows environment"
 summary: "Ruby is a dynamic, reflective, object-oriented, general-purpose programming language. This post is about how to install Ruby in your windows, it's easy, so let's get it on."
-homeImage: "/assets/img/ruby-icon.png"
+homeImage: "/assets/img/installing-ruby-on-windows.png"
 type: post
 permalink: installing-ruby-on-windows
 ---

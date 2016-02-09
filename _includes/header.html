@@ -2,9 +2,9 @@
     {% for author in site.data.author %}
     <h1 class="main-header__title">{{ author.name }}</h1>
     {% endfor %}
-    <a class="main-header__hamburger-menu" data-js-menu-trigger>Menu</a>
-    <nav class="main-header__menu" id="main-menu">
-        <a class="main-header__close-menu" data-js-menu-trigger>X</a>
+    <a class="main-header__hamburger-menu" data-js="open-menu-button">Menu</a>
+    <nav class="main-header__menu" data-js="main-menu">
+        <a class="main-header__close-menu" data-js="close-menu-button">X</a>
         <ul>
             <li class="main-header__menu-item"><a href="/">Home</a></li>
             {% for item in site.data.menu-item %}
