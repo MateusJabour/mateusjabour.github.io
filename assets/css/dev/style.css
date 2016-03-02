@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Anton);
 /* line 2, ../../sass/helpers/_placeholders.sass */
 .home-body:before, .main-header:before, .footer:before, .main-header__menu ul:before, .home-posts__list-item:before, .home-body:after, .main-header:after, .footer:after, .main-header__menu ul:after, .home-posts__list-item:after {
   content: " ";
@@ -63,29 +64,29 @@ h3 {
 @media only screen and (min-width: 769px) {
   /* line 1, ../../sass/layout/_main-header.sass */
   .main-header {
-    padding-top: 36px;
     height: 160px;
   }
 }
-/* line 12, ../../sass/layout/_main-header.sass */
+/* line 11, ../../sass/layout/_main-header.sass */
 .main-header__title {
   float: left;
   color: white;
-  margin: 5px 0 0 20px;
-  font-family: "Press Start 2P", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: "Anton", sans-serif;
+  font-size: 25px;
+  margin: 0 0 0 20px;
 }
 @media only screen and (min-width: 321px) {
-  /* line 12, ../../sass/layout/_main-header.sass */
+  /* line 11, ../../sass/layout/_main-header.sass */
   .main-header__title {
-    font-size: 19px;
-    margin: 3px 0 0 20px;
+    font-size: 25px;
+    margin: 0 0 0 20px;
   }
 }
 @media only screen and (min-width: 769px) {
-  /* line 12, ../../sass/layout/_main-header.sass */
+  /* line 11, ../../sass/layout/_main-header.sass */
   .main-header__title {
-    font-size: 37px;
+    font-size: 45px;
+    margin: 10px 0 0 20px;
   }
 }
 

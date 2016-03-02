@@ -769,5 +769,5 @@ statement.evaluate({ x: Number.new(1) })
 So, I think you didn't espace the attention that writing SIMPLE in both ways, we have implemented two different Ruby interpreters.
 
 {% for author in site.data.author%}
-So, we finished the first part of this post, on the next part, we are going to talk about other semantic, called denotational semantics. If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>, and take a look at the full <a href="http://jekyllrb.com/docs/home/">Documentation</a>.
+So, we finished the first part of this post, on the next part, we are going to talk about other semantic, called denotational semantics. If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>
 {% endfor %}
