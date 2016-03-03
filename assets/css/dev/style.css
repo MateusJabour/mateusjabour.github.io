@@ -121,7 +121,7 @@ h3 {
 .footer small {
   display: none;
 }
-@media only screen and (min-width: 321px) {
+@media only screen and (min-width: 769px) {
   /* line 9, ../../sass/layout/_footer.sass */
   .footer small {
     display: block;
@@ -507,48 +507,53 @@ h3 {
 }
 /* line 1, ../../sass/module/_social-media.sass */
 .social-media {
-  float: right;
   padding-left: 0;
-  margin: -7px 0 0;
+  margin: -7px auto 0;
 }
-/* line 6, ../../sass/module/_social-media.sass */
+@media only screen and (min-width: 769px) {
+  /* line 1, ../../sass/module/_social-media.sass */
+  .social-media {
+    float: right;
+  }
+}
+/* line 8, ../../sass/module/_social-media.sass */
 .social-media__link {
   display: inline-block;
 }
-/* line 9, ../../sass/module/_social-media.sass */
+/* line 10, ../../sass/module/_social-media.sass */
 .social-media__link a {
   background-image: url('../../img/sprite-sfe0924f06a.png');
+  display: block;
   width: 32px;
   height: 32px;
-  display: block;
   transition: opacity 0.5s ease-in;
 }
 
-/* line 18, ../../sass/module/_social-media.sass */
+/* line 19, ../../sass/module/_social-media.sass */
 .social-media__link--facebook a {
   background-position: 0 -47px;
   margin-left: 5px;
 }
 
-/* line 18, ../../sass/module/_social-media.sass */
+/* line 19, ../../sass/module/_social-media.sass */
 .social-media__link--twitter a {
   background-position: 0 -175px;
   margin-left: 5px;
 }
 
-/* line 18, ../../sass/module/_social-media.sass */
+/* line 19, ../../sass/module/_social-media.sass */
 .social-media__link--instagram a {
   background-position: 0 -111px;
   margin-left: 5px;
 }
 
-/* line 18, ../../sass/module/_social-media.sass */
+/* line 19, ../../sass/module/_social-media.sass */
 .social-media__link--github a {
   background-position: 0 -79px;
   margin-left: 5px;
 }
 
-/* line 18, ../../sass/module/_social-media.sass */
+/* line 19, ../../sass/module/_social-media.sass */
 .social-media__link--linkedin a {
   background-position: 0 -143px;
   margin-left: 5px;
