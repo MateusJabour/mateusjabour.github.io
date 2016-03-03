@@ -218,7 +218,7 @@ h3 {
 /* line 2, ../../sass/module/_menu.sass */
 .main-header__hamburger-menu {
   display: block;
-  background-image: url('../../img/sprite-s1dce311570.png');
+  background-image: url('../../img/sprite-sfe0924f06a.png');
   float: right;
   background-position: 0 -20px;
   height: 27px;
@@ -235,7 +235,7 @@ h3 {
 .main-header__close-menu {
   float: right;
   display: block;
-  background-image: url('../../img/sprite-s1dce311570.png');
+  background-image: url('../../img/sprite-sfe0924f06a.png');
   background-position: 0 0;
   height: 20px;
   width: 20px;
@@ -517,7 +517,7 @@ h3 {
 }
 /* line 9, ../../sass/module/_social-media.sass */
 .social-media__link a {
-  background-image: url('../../img/sprite-s1dce311570.png');
+  background-image: url('../../img/sprite-sfe0924f06a.png');
   width: 32px;
   height: 32px;
   display: block;
@@ -532,13 +532,25 @@ h3 {
 
 /* line 18, ../../sass/module/_social-media.sass */
 .social-media__link--twitter a {
-  background-position: 0 -111px;
+  background-position: 0 -175px;
   margin-left: 5px;
 }
 
 /* line 18, ../../sass/module/_social-media.sass */
 .social-media__link--instagram a {
+  background-position: 0 -111px;
+  margin-left: 5px;
+}
+
+/* line 18, ../../sass/module/_social-media.sass */
+.social-media__link--github a {
   background-position: 0 -79px;
+  margin-left: 5px;
+}
+
+/* line 18, ../../sass/module/_social-media.sass */
+.social-media__link--linkedin a {
+  background-position: 0 -143px;
   margin-left: 5px;
 }
 
