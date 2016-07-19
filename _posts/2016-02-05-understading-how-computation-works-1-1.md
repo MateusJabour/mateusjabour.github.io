@@ -1,17 +1,17 @@
 ---
 layout: posts
-title: "Understanding how computation works part 1"
-summary: "So, on this post, I will try to make you understand more about computer science. So, to start the post, I will talk about the meaning of programs."
-homeImage: "/assets/img/understanding-how-computation-works-1.png"
+title: "Understanding how computation works part 1-1"
+summary: "On this post, I will try to make you understand more about computer science. So, to start the post, I will talk about the meaning of programs and talk a little bit about Operational Semantics."
+homeImage: "/assets/img/understanding-how-computation-works-1-1.png"
 type: post
-permalink: understanding-how-computation-works-1
+permalink: understanding-how-computation-works-1-1
 ---
 
 <h2 class="post__text-title">{{ page.title }}</h2>
 
 ![Computation Logo]({{ page.homeImage }})
 
-So, on this post, I will try to make you understand more about computer science. So, to start the post, I will talk about the meaning of programs.
+{{ page.summary }}
 
 First of all, computer science isn't about programs, it's about ideas, we use programming languages to make those ideas clear in our mind, and the program is the representation of the idea out of our minds. In linguistics, semantics is the connection between the word and it meaning, in computer science, there is a field called "formal semantics", that is concerned with finding ways to discover the meaning of programs and using it to discover great things in programming.
 
@@ -81,7 +81,7 @@ class Multiply < Struct.new(:left, :right)
 end
 </code>
 
-Than, we need to reduce those expression until we get the final result, but first, we need to know if we really need to reduce tha expression or if the expression is already the result, so, creating a "reducible?" method, we can know what situation the expression it is.
+Than, we need to reduce those expression until we get the final result, but first, we need to know if we really need to reduce the expression or if the expression is already the result, so, creating a "reducible?" method, we can know what situation the expression it is.
 
 <code>
 Class Number
@@ -165,7 +165,7 @@ Now, let's run this machine on a expression:
     nil
 </code>
 
-So, looks easy, no? Let's implement a boolean expression, the "less than", for this, we need to create towo objects, the boolean itself and the less than.
+So, looks easy, no? Let's implement a boolean expression, the "less than", for this, we need to create two objects, the boolean itself and the less than.
 
 <code>
 class Boolean < Struct.new(:value)
@@ -251,9 +251,9 @@ After introducing the variables on SIMPLE, we need to keep the variable's name a
 
 <code>
 class Add
-    def reduce(enviroment)
+    def reduce(environment)
         if left.reducible?
-            Add.new(left.reduce(enviroment), right)
+            Add.new(left.reduce(environment), right)
         elsif right.reducible?
             Add.new(left, right.reduce(environment))
         else
@@ -263,9 +263,9 @@ class Add
 end
 <br>
 class Multiply
-    def reduce(enviroment)
+    def reduce(environment)
         if left.reducible?
-            Multiply.new(left.reduce(enviroment), right)
+            Multiply.new(left.reduce(environment), right)
         elsif right.reducible?
             Multiply.new(left, right.reduce(environment))
         else
@@ -275,11 +275,11 @@ class Multiply
 end
 <br>
 class LessThan
-    def reduce(enviroment)
+    def reduce(environment)
         if left.reducible?
-            LessThan.new(left.reduce(enviroment), right)
+            LessThan.new(left.reduce(environment), right)
         elsif right.reducible?
-            LessThan.new(left, right.reduce(enviroment))
+            LessThan.new(left, right.reduce(environment))
         else
             Boolean.new(left.value < right.value)
         end
@@ -287,12 +287,12 @@ class LessThan
 end
 </code>
 
-Look that we've only put the environment as a argument on each reduce method, after this, we need to change the Machine object to have a environment instance variable, because everytime the step method is called, it need to have the environment to reduce the expression, so...
+Look that we've only put the environment as a argument on each reduce method, after this, we need to change the Machine object to have a environment instance variable, because every time the step method is called, it need to have the environment to reduce the expression, so...
 
 <code>
-class Machine < Struct.new(:expression, :enviroment)
+class Machine < Struct.new(:expression, :environment)
     def step
-        self.expression = expression.reduce(enviroment)
+        self.expression = expression.reduce(environment)
     end
 <br>
     def run
@@ -307,7 +307,7 @@ end
 
 Now that we have a environment to keep all our variables, our operational semantics is complete.
 
-We can now look at an different kind of implemetation, it is called statement, different from the expressions, statement doesn't produce another expression, instead of this, statement is evaluated to make changes on the state of the abstract machine, to update the state of it, the environment is a state, the only one on SIMPLE, so, let's allow SIMPLE to produce a new environment to replace the current one.
+We can now look at an different kind of implementation, it is called statement, different from the expressions, statement doesn't produce another expression, instead of this, statement is evaluated to make changes on the state of the abstract machine, to update the state of it, the environment is a state, the only one on SIMPLE, so, let's allow SIMPLE to produce a new environment to replace the current one.
 
 Let's create a object called DoNothing, that can't be reduced and there is no effect, the name already explain what it does.
 
@@ -333,9 +333,9 @@ end
 
 This class seems to be useless, but DoNothing will help us to represent that the execution is complete and successful.
 
-Now, let's create the assigment expression, this one will help us to populate the environment with a lot of new variables and values for them.
+Now, let's create the assignment expression, this one will help us to populate the environment with a lot of new variables and values for them.
 
-But, how we can reduce a assigment? Let's think about the assigment flow: the right side will be evaluated, reduced until there isn't any reducible expression, then the right side result will be "assigned" to the left side variable, and finally put on the environment, after that, nothing happens. Look that "nothing happens" can be translated to "DoNothing" semantics, with this, let's implement the assigment class.
+But, how we can reduce a assignment? Let's think about the assignment flow: the right side will be evaluated, reduced until there isn't any reducible expression, then the right side result will be "assigned" to the left side variable, and finally put on the environment, after that, nothing happens. Look that "nothing happens" can be translated to "DoNothing" semantics, with this, let's implement the assignment class.
 
 <code>
 class Assign < Struct.new(:name, :expression)
@@ -351,36 +351,36 @@ class Assign < Struct.new(:name, :expression)
         true
     end
     <br>
-    def reduce(enviroment)
+    def reduce(environment)
         if expression.reducible?
-            [Assign.new(name, expression.reduce(enviroment)), enviroment]
+            [Assign.new(name, expression.reduce(environment)), environment]
         else
-            [DoNothing.new, enviroment.merge({ name => expression })]
+            [DoNothing.new, environment.merge({ name => expression })]
         end
     end
 end
 </code>
 
-Now that we are returning a new environment from the assignment, we will need to reimplement the Machine to receive the new environment:
+Now that we are returning a new environment from the assignment, we will need to re-implement the Machine to receive the new environment:
 
 <code>
-class Machine < Struct.new(:statement, :enviroment)
+class Machine < Struct.new(:statement, :environment)
     def step
-        self.statement, self.enviroment = statement.reduce(enviroment)
+        self.statement, self.environment = statement.reduce(environment)
     end
 <br>
     def run
         while statement.reducible?
-            puts "#{statement}, #{enviroment}"
+            puts "#{statement}, #{environment}"
             step
         end
 <br>
-        puts "#{statement}, #{enviroment}"
+        puts "#{statement}, #{environment}"
     end
 end
 </code>
 
-Now we have the environment update everytime that the assignment ends. Let's see what happens when we run it:
+Now we have the environment update every time that the assignment ends. Let's see what happens when we run it:
 
 <code>
 Machine.new(
@@ -394,7 +394,7 @@ do-nothing, {x=>3}
 nil
 </code>
 
-NOw, let's try to implement a If statement, let's remember how a 'if' works. We have the condition, the consequence and the alternative(else), if the condition is true, execute the consequence, else, execute the alternative. Now, thinking about SIMPLE, first of all we will need to reduce the condition before evaluating it, then, if true, reduce to the consequence, else, reduce to the alternative., both don't change the environment.
+Now, let's try to implement a If statement, let's remember how a 'if' works. We have the condition, the consequence and the alternative(else), if the condition is true, execute the consequence, else, execute the alternative. Now, thinking about SIMPLE, first of all we will need to reduce the condition before evaluating it, then, if true, reduce to the consequence, else, reduce to the alternative., both don't change the environment.
 
 <code>
 class If < Struct.new(:condition, :consequence, :alternative)
@@ -409,15 +409,15 @@ class If < Struct.new(:condition, :consequence, :alternative)
         true
     end
 <br>
-    def reduce(enviroment)
+    def reduce(environment)
         if condition.reducible?
-            [If.new(condition.reduce(enviroment), consequence, alternative), enviroment]
+            [If.new(condition.reduce(environment), consequence, alternative), environment]
         else
             case condition
             when Boolean.new(true)
-                [consequence, enviroment]
+                [consequence, environment]
             when Boolean.new(false)
-                [alternative, enviroment]
+                [alternative, environment]
             end
         end
     end
@@ -442,9 +442,9 @@ do-nothing, {:x=>true, :y=>1}
 nil
 </code>
 
-If you want to use a if statement withou the else, just pass as the alternative a "do-nothing".
+If you want to use a if statement without the else, just pass as the alternative a "do-nothing".
 
-What about sequences of expressions? How could we implement this on the small-steps semantics? So, first we need to define the evaluation order, almost everytime, the evaluation is from the left to the right, so, having this in mind, we can say that is basically evaluate the first expression, if it is reducible, do it and return the new environment, if it is a do-nothing, reduce the second until it becomes a do-nothing and return the new envirionment too. Let's do it.
+What about sequences of expressions? How could we implement this on the small-steps semantics? So, first we need to define the evaluation order, almost every time, the evaluation is from the left to the right, so, having this in mind, we can say that is basically evaluate the first expression, if it is reducible, do it and return the new environment, if it is a do-nothing, reduce the second until it becomes a do-nothing and return the new environment too. Let's do it.
 
 <code>
 class Sequence < Struct.new(:first, :second)
@@ -460,13 +460,13 @@ class Sequence < Struct.new(:first, :second)
         true
     end
 <br>
-    def reduce (enviroment)
+    def reduce (environment)
         case first
         when DoNothing.new
-            [second, enviroment]
+            [second, environment]
         else
-            reduced_first, reduced_enviroment = first.reduce(enviroment)
-            [Sequence.new(reduced_first, second), reduced_enviroment]
+            reduced_first, reduced_environment = first.reduce(environment)
+            [Sequence.new(reduced_first, second), reduced_environment]
         end
     end
 end
@@ -491,7 +491,7 @@ do-nothing, {:x => 2, :y => 5}
 nil
 </code>
 
-To finish our SIMPLE implementation, let's implement while, a looping statement. So, to implement while, we will need to use if statement to represent the while condition, the if consequence will be a sequence, the first expression will be the assigment, that represents the while body being executed and updating the environment, the second expression will be the while, that will use the updated environment, this if will be repeat until the condition becomes false.
+To finish our SIMPLE implementation, let's implement while, a looping statement. So, to implement while, we will need to use if statement to represent the while condition, the if consequence will be a sequence, the first expression will be the assignment, that represents the while body being executed and updating the environment, the second expression will be the while, that will use the updated environment, this if will be repeat until the condition becomes false.
 
 <code>
 class While < Struct.new(:condition, :body)
@@ -507,8 +507,8 @@ class While < Struct.new(:condition, :body)
         true
     end
 <br>
-    def reduce(enviroment)
-        [If.new(condition, Sequence.new(body, self), DoNothing.new), enviroment]
+    def reduce(environment)
+        [If.new(condition, Sequence.new(body, self), DoNothing.new), environment]
     end
 end
 </code>
@@ -544,14 +544,14 @@ if (x < 5) { x = x * 3; while (x < 5) { x = x * 3 } } else { do-nothing }, {:x=>
 if (9 < 5) { x = x * 3; while (x < 5) { x = x * 3 } } else { do-nothing }, {:x=>9}
 if (false) { x = x * 3; while (x < 5) { x = x * 3 } } else { do-nothing }, {:x=>9}
 do-nothing, {:x=>9}
- => nil 
+ => nil
 </code>
 
 Now that we finished the SIMPLE using the small-steps semantics, we can see that this semantic don't handle some errors, like if we use an Add with a number and a boolean, will appear a error from the language we are using, in our case, Ruby.
 
 There is other type of Operational Semantics, it is called Big-Step semantics, and it consists in getting an expression and go straight to its result, instead of making reduction by reduction.
 
-Some of the expression using Big-Steps semantics will immediately be evualated to themselves, others will perfome some computatuion and evaluate to a different expression.
+Some of the expression using Big-Steps semantics will immediately be evaluated to themselves, others will perform some computation and evaluate to a different expression.
 
 Let's start implementing Number and Boolean.
 
@@ -603,7 +603,7 @@ class Variable < Struct.new(:name)
 end
 </code>
 
-We can notice with the implemention of Add, Multiply and LessThan - that will follow - that Big-steps semantics uses a lot of the programming language we are using, in our case, Ruby.
+We can notice with the implementation of Add, Multiply and LessThan - that will follow - that Big-steps semantics uses a lot of the programming language we are using, in our case, Ruby.
 
 <code>
     class Add < Struct.new(:left, :right)
@@ -712,7 +712,7 @@ class If < Struct.new(:condition, :consequence, :alternative)
 end
 </code>
 
-Since the idea of a sequence is to evaluate the first statement, then, evulate the second with the environment changed by the first statement, it is easy with evaluate method returning the changed environment.
+Since the idea of a sequence is to evaluate the first statement, then, evaluate the second with the environment changed by the first statement, it is easy with evaluate method returning the changed environment.
 
 <code>
 class Sequence < Struct.new(:first, :second)
@@ -730,7 +730,7 @@ class Sequence < Struct.new(:first, :second)
 end
 </code>
 
-Using Big-steps, the idea of while is something like this: first, evaluate the condition, if it is true, evaluate self(the while statement), passing by parameters the environment changed by the evaluation of body. If it is false, just return the environmente unchanged.
+Using Big-steps, the idea of while is something like this: first, evaluate the condition, if it is true, evaluate self(the while statement), passing by parameters the environment changed by the evaluation of body. If it is false, just return the environment unchanged.
 
 <code>
 class While < Struct.new(:condition, :body)
@@ -756,7 +756,7 @@ end
 Let's test the new implementation of SIMPLE:
 
 <code>
-statement = 
+statement =
     While.new(
         LessThan.new(Variable.new(:x), Number.new(5)),
         Assign.new(:x, Multiply.new(Variable.new(:x), Number.new(3)))
@@ -766,8 +766,8 @@ statement.evaluate({ x: Number.new(1) })
 => {:x => 9}
 </code>
 
-So, I think you didn't espace the attention that writing SIMPLE in both ways, we have implemented two different Ruby interpreters.
+So, I think you didn't escape the attention that writing SIMPLE in both ways, we have implemented two different Ruby interpreters.
 
 {% for author in site.data.author%}
-So, we finished the first part of this post, on the next part, we are going to talk about other semantic, called denotational semantics. If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>
+If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>
 {% endfor %}

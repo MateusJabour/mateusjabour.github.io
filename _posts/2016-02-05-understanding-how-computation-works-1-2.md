@@ -1,10 +1,10 @@
 ---
 layout: posts
-title: "Understanding how computation works part 2"
-summary: "So, on this post, I will try to make you understand more about computer science. So, to start the post, I will talk about the meaning of programs."
-homeImage: "/assets/img/understanding-how-computation-works-2.png"
+title: "Understanding how computation works part 1-2"
+summary: "On this post, I will try to make you understand more about computer science. So, in this part, I will talk about Denotational Semantics, and we are going to parse the semantics implementation."
+homeImage: "/assets/img/understanding-how-computation-works-1-2.png"
 type: post
-permalink: understanding-how-computation-works-2
+permalink: understanding-how-computation-works-1-2
 ---
 
 <h2 class="post__text-title">{{ page.title }}</h2>
@@ -53,7 +53,7 @@ The method to_ruby returns a string that contains a Ruby code, that builds a pro
     =>5
 </code>
 
-Knowing that we are going to use hash as our envorinment, let's implement Variables object.
+Knowing that we are going to use hash as our environment, let's implement Variables object.
 
 <code>
 class Variable < Struct.new(:name)
@@ -71,7 +71,7 @@ class Variable < Struct.new(:name)
 end
 </code>
 
-Remember a important thing in denotational semantics, that it is compositiona, the denotation of the program is constructed from the denotations of its parts. We will see it on Add, Multiply and LessThan.
+Remember a important thing in denotational semantics, that it is composition, the denotation of the program is constructed from the denotations of its parts. We will see it on Add, Multiply and LessThan.
 
 <code>
     class Add < Struct.new(:left, :right)
@@ -232,7 +232,7 @@ proc.call(environment)
 => {:x=>9}
 </code>
 
-So, we can see that there is a advantage on denotational semantics, it is the fact that you can ignore the executation flow and focus on how to convert the program into a different represatation.
+So, we can see that there is a advantage on denotational semantics, it is the fact that you can ignore the execution flow and focus on how to convert the program into a different representation.
 
 Now, let's try to implement a parser for SIMPLE, we are going to use a Ruby tool called Treetop, a domain-specific language for describing syntax in a way that allows a parser to be automatically generated.
 
@@ -314,7 +314,7 @@ require 'treetop'
 Treetop.load('simple')
 =>SimpleParser
 parse_tree = SimpleParser.new.parse('while (x < 5) { x = x * 3 }')
-=> (big return, to summarise, it is a SyntaxNode structure that is a concrete syntax tree, design for manipulation by Treetop parser.)
+=> (big return, to summarize, it is a SyntaxNode structure that is a concrete syntax tree, design for manipulation by Treetop parser.)
 statement = parse_tree.to_ast
 =>while (x < 5) { x = x * 3 }
 statement.evaluate({x: Number.new(1) })
@@ -329,5 +329,5 @@ statement.to_ruby
 You can see that we can use the two semantics, operational and denotational.
 
 {% for author in site.data.author%}
-So, we finished the second part of this post, on the next part, we are going to talk about automatas, how they work and how useful they are. If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>
+If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="_blank">Twitter</a>
 {% endfor %}
