@@ -4,7 +4,7 @@ title: "Understanding how computation works part 4"
 summary: "On this post, I will try to make you understand more about computer science. In this part of the post we are going to talk about Alan Turing machine, how it works and how can we simulate it."
 homeImage: "/assets/img/understanding-how-computation-works-3.png"
 type: post
-permalink: understanding-how-computation-works-3
+permalink: understanding-how-computation-works-4
 ---
 
 <h2 class="post__text-title">{{ page.title }}</h2>
