@@ -15,7 +15,7 @@ permalink: understanding-how-computation-works-5-2
 
 Using just procs to build a program is quite a challenge, but we've seen that's possible, let's take a look at a couple of techniques for writing code in this minimal style.
 
-####Infinite streams
+#### Infinite streams
 
 Streams are pretty interesting to implement, because it's an infinite list that we can do whatever we want just by using FIRST and REST, with this we can implement lists that calculate their contents on the fly. Look at one implementation of an infinite stream of zeros:
 
@@ -96,7 +96,7 @@ to_array(MUTIPLY_STREAMS[UPWARDS_OF[ONE]][MULTIPLES_OF[THREE]], 5).map { |p| to_
 => [3, 12, 27, 48, 75]
 </code>
 
-####Avoiding arbritary recursion
+#### Avoiding arbritary recursion
 
 As we saw on the implementations of MOD and RANGE, we needed to use the Z combinator, so those procs could work. The Z combinator is very convinient, but not ideal, we can implement those procs without using the Z combinator. Let's try yo implement MOD without it, we know that MOD works by repeatedly subtracting n from m as long as n <= m, using recursive calls of MOD. But, instead of using recursion we start to use a fixed number to check if n <= m, we don't know exactly how many time we need to check it, but it isn't a big problem to check more than we need, right?
 
