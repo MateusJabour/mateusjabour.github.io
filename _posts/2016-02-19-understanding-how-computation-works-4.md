@@ -70,7 +70,7 @@ end
 Now, let's test it working:
 
 <code>
-tape = Tape.new(['1', '0', '1'], '1', [], '\_')
+tape = Tape.new(['1', '0', '1'], '1', [], '_')
 => #<Tape 101(1)>
 tape.middle
 => 1
@@ -164,15 +164,15 @@ end
 Now that we have a Deterministic Turing Machine implemented, let's see it working:
 
 <code>
-tape = Tape.new(['1', '0', '1'], '1', [], '\_')
-=> #<struct Tape left=["1", "0", "1"], middle="1", right=[], blank="\_">
+tape = Tape.new(['1', '0', '1'], '1', [], '_')
+=> #<struct Tape left=["1", "0", "1"], middle="1", right=[], blank="_">
 rulebook = DTMRulebook.new([
     TMRule.new(1, '0', 2, '1', :right),
     TMRule.new(1, '1', 1, '0', :left),
-    TMRule.new(1, '\_', 2, '1', :right),
+    TMRule.new(1, '_', 2, '1', :right),
     TMRule.new(2, '0', 2, '0', :right),
     TMRule.new(2, '1', 2, '1', :right),
-    TMRule.new(2, '\_', 3, '\_', :left)
+    TMRule.new(2, '_', 3, '_', :left)
     ])
 => #<struct DTMRulebook ...>
 configuration = TMConfiguration.new(1, tape)
@@ -194,7 +194,7 @@ dtm.accepting?
 dtm.run
 => nil
 dtm.current_configuration
-=> #<struct TMConfiguration state=3, tape=#<Tape 110(0)\_>>
+=> #<struct TMConfiguration state=3, tape=#<Tape 110(0)_>>
 dtm.accepting?
 => true
 </code>
