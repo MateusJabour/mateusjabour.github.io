@@ -2,7 +2,7 @@
 layout: posts
 title: "Understanding how computation works part 4"
 summary: "On this post, I will try to make you understand more about computer science. In this part of the post we are going to talk about Alan Turing machine, how it works and how can we simulate it."
-homeImage: "/assets/img/understanding-how-computation-works-3.png"
+homeImage: "/assets/img/understanding-how-computation-works-4.jpg"
 type: post
 permalink: understanding-how-computation-works-4
 ---
@@ -34,11 +34,12 @@ Now, let's plan how the machine will work:
 
 So, look how the execution will be:
 
-![execution]({{ page.homeImage }})
+<img src="/assets/img/execution.jpg" alt="" height="300">
+
 
 What about the rules, what will we need to make some rules? Obviously the current state and the next state, now, let's think about the new tape, maybe the direction in which to move the head, also the character to write and the character to read on the current position. Well, I think we got it. So, how can we represent those rules in a diagram? Let's look at this diagram below:
 
-![Diagram]({{ page.homeImage }})
+<img src="/assets/img/diagram.jpg" alt="" height="200">
 
 So, the first character is the one that need to be read, the second is the one the need to be write on the tape and the R/L that appears as the last information is the direction that the tape head need to move to.
 
@@ -69,7 +70,7 @@ end
 Now, let's test it working:
 
 <code>
-tape = Tape.new(['1', '0', '1'], '1', [], '_')
+tape = Tape.new(['1', '0', '1'], '1', [], '\_')
 => #<Tape 101(1)>
 tape.middle
 => 1
@@ -163,15 +164,15 @@ end
 Now that we have a Deterministic Turing Machine implemented, let's see it working:
 
 <code>
-tape = Tape.new(['1', '0', '1'], '1', [], '_')
-=> #<struct Tape left=["1", "0", "1"], middle="1", right=[], blank="_">
+tape = Tape.new(['1', '0', '1'], '1', [], '\_')
+=> #<struct Tape left=["1", "0", "1"], middle="1", right=[], blank="\_">
 rulebook = DTMRulebook.new([
     TMRule.new(1, '0', 2, '1', :right),
     TMRule.new(1, '1', 1, '0', :left),
-    TMRule.new(1, '_', 2, '1', :right),
+    TMRule.new(1, '\_', 2, '1', :right),
     TMRule.new(2, '0', 2, '0', :right),
     TMRule.new(2, '1', 2, '1', :right),
-    TMRule.new(2, '_', 3, '_', :left)
+    TMRule.new(2, '\_', 3, '\_', :left)
     ])
 => #<struct DTMRulebook ...>
 configuration = TMConfiguration.new(1, tape)
@@ -193,7 +194,7 @@ dtm.accepting?
 dtm.run
 => nil
 dtm.current_configuration
-=> #<struct TMConfiguration state=3, tape=#<Tape 110(0)_>>
+=> #<struct TMConfiguration state=3, tape=#<Tape 110(0)\_>>
 dtm.accepting?
 => true
 </code>

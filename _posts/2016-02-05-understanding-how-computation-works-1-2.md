@@ -11,7 +11,7 @@ permalink: understanding-how-computation-works-1-2
 
 ![Computation Logo]({{ page.homeImage }})
 
-On the first part of this post, we used an operational perspective, on this second part, let's use othe perspective, the denotational one. Different from the operational semantics that are concerned in showing you what happens with the program execution, the denotational semantics are concerned in translating your program from their native language to other representation. Denotational semantics are more abstract, because instead of turning the program into a real behavior, it is just replacing one language with another. Let's implement SIMPLE with denotational semantics.
+On the first part of this post, we used an operational perspective, on this second part, let's use other perspective, the denotational one. Different from the operational semantics that are concerned in showing you what happens with the program execution, the denotational semantics are concerned in translating your program from their native language to other representation. Denotational semantics are more abstract, because instead of turning the program into a real behavior, it is just replacing one language with another. Let's implement SIMPLE with denotational semantics.
 
 On this semantic, we are going to use Ruby's procs, that takes the environment as a argument and return some Ruby object. Let's use this idea:
 
