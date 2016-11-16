@@ -1,7 +1,7 @@
 ---
 layout: posts
 title: "Understanding how computation works part 5-2"
-summary: "On this post, I will try to make you understand more about computer science. In this part of the post we are going to what more we can do with lambda calculus, we're going to also try to implement an interpreter for lambda calculus and parse this interpreter."
+summary: "On this post, I will try to make you understand more about computer science. In this part of the post we are going to see what more we can do with lambda calculus, we're going to also try to implement an interpreter for lambda calculus and parse this interpreter."
 homeImage: "/assets/img/understanding-how-computation-works-5-2.jpg"
 type: post
 permalink: understanding-how-computation-works-5-2
