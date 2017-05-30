@@ -394,7 +394,9 @@ An added complication is that different analyses access information in different
 
 #### Encapsulating Access and Traversal
 
+Right now our glyph interface uses an integer index to let clients refer to children. Although that might be reasonable for glyph classes that store their children in an array, it may be inefficient for glyphs that use a linked list.
 
+Therefore only the glyph can know the data structure it uses. The glyph interface shouldn't be biases toward on data structure. We can solve this problem and support several different
 
 {% for author in site.data.author%}
 In the next post, we're going to try to design a document editor. If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="\_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="\_blank">Twitter</a>
