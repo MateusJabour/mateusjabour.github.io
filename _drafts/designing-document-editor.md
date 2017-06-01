@@ -396,7 +396,103 @@ An added complication is that different analyses access information in different
 
 Right now our glyph interface uses an integer index to let clients refer to children. Although that might be reasonable for glyph classes that store their children in an array, it may be inefficient for glyphs that use a linked list.
 
-Therefore only the glyph can know the data structure it uses. The glyph interface shouldn't be biases toward on data structure. We can solve this problem and support several different
+Therefore only the glyph can know the data structure it uses. The glyph interface shouldn't be biases toward on data structure. We can solve this problem and support several different kinds of traversals at the same time. We can put multiple access and traversal capabilities directly in the glyph classes and provide a way to choose among them.
+
+We might add the following abstract operations to Glyph's interface to support this approach:
+
+  - void First(Traversal kind) - initializes the traversal, parameter with the Traversal type, it's a enumatared constant with values such as CHILDREN, PREORDER, POSTORDER and INORDER.
+  - void Next - advances to the next glyph in the traversal.
+  - bool IsDone - returns if the traversal is over.
+  - Glyph* GetCurrent() - replaces the Child operation, access the current glyph.
+  - Void Insert(Glyph*) - inserts the given glyph at the current position.
+
+An analysis would use the following C++ code to do a preorder traversal of a glyph structure rooted at g:
+
+```
+Glyph* g;
+
+for (g->First(PREORDER); !g->IsDone(); g->Next()) {
+  Glyph* current = g->GetCurrent();
+
+  //do some analysis
+}
+```
+
+There's no longer anything that biases the interface toward one kind of collection of another. But this approach still has problems. For one thing, it can't support new traversals without either extending the set of enumerated values or adding new operations.
+
+We'd live to avoid changing existing declarations. Putting the traversal mechanism entirely in the Glyph class hierarchy makes it hard to modify or extend without changing lots of classes.
+
+Once again, a better solution is to encapsulate the concept that varies, in this case, the access and traversal mechanisms. We can introduce a class of objects classes iterators whose sole purpose is to define different sets of these mechanisms. We can use inheritance to let us access different data structure uniformly and support new kinds of traversals. We won't change the glyph interface.
+
+#### Iterator Class and Subclasses
+
+We'll user an abstract class called Iterator to define a general interface for access the traversal. Concrete subclasses like ArrayIterator and ListIterator implement the interface to provide access to arrays and lists, while PreorderIterator, PostorderIterator, and the like implement different traversals on specific structures. We're going to add a CreateIterator abstract operation to the Glyph class interface to support iterator.
+
+The Iterator interface provides operations First, Next, and is Done for controlling the traversal, we can access the children of a glyph structure without knowing its representation:
+
+```
+Glyph* p;
+Iterator<Glyph*>* i = g->CreateIterator();
+
+for (i->First(); !i->isDone(); i->Next()) {
+  Glyph* child = i->CurrentItem();
+
+  //do something with current child
+}
+```
+
+!['']('2.3')
+
+CreateIterator returns a NullIterator instance by default. NullIterator's isDone operation always returns true. A glyph subclass that has children will override CreateIterator to return an instance of a different Iterator subclass. Which subclass depends on the structure that stores the children. If the Row subclass of Glyph stores its children in a list \_children, then its CreateIterator operation would look like this:
+
+```
+Iterator <Glyph*>* Row:CreateIterator () {
+  return new ListIterator<Glyph*>(\_children);
+}
+```
+
+Iterators for preorder and inorder traversals implement their traversals in terms of glyph-specific iterators. The iterators for these traversals are supplied the root glyph in the structure they traverse. They call CreateIterator on the glyphs in the structure and use a stack to keep track of the resulting iterators.
+
+```
+void PreorderIterator::First () {
+  Iterator<Glyph*>* i = _root->CreateIterator();
+
+  if (i) {
+    i->First();
+    _iterators.RemoveAll();
+    _iterators.Push(i);
+  }
+}
+```
+
+CurrentItem would simply call CurrentItem on the iterator at the top of the stack:
+
+```
+Glyph* PreorderIterator::CurrentItem () const {
+  Glyph* g = 0;
+  if (_iterators.Size() > 0) {
+    g = _iterators.Top()->CurrentItem();
+  }
+  return g;
+}
+```
+
+The Next operation gets the top iterator on the stack and asks its current item to create an iterator. Next sets the new iterator to the first item in the traversal and pushes it on the stack. Then Next tests the latest iterator; if its IsDone operation returns true, then we've finished traversing the current subtree(or leaf) in the traversal. In that case, Next pops the top iterator off the stack and repeats this process until it finds the next incomplete traversal, if there is one; if not, then we have finished traversing the structure.
+
+```
+void PreorderIterator::Next () {
+  Iterator<Glyph*>* i = _iterators.Top()->CurrentItem()->CreateIterator();
+  i->First();
+
+  while (_iterators.Size() > 0 ** _iterators.Top()->IsDone()) {
+    delete _iterators.Pop();
+    _iterators.Top()->Next();
+  }
+}
+```
+
+Notice how the Iterator class hierarchy lets us add new kinds of traversal without modifying glyph classes, only by subclassing Iterator and adding a new traversal. Because iterators store their own copy of the state of a traversal, we can carry on multiple traversals simultaneously, even on the same structure.
+
 
 {% for author in site.data.author%}
 In the next post, we're going to try to design a document editor. If you have any doubts about this post, talk with me on <a href="{{ author.social.facebook }}" target="\_blank">Facebook</a> or <a href="{{ author.social.twitter }}" target="\_blank">Twitter</a>
